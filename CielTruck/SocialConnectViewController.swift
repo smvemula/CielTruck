@@ -8,17 +8,30 @@
 
 import UIKit
 
-class SocialConnectViewController: UIViewController {
+class SocialConnectViewController: UIViewController, UIWebViewDelegate {
+    
+    @IBOutlet var web : UIWebView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.view.startLoading()
+        let url = NSURL(string: "https://m.facebook.com/profile.php?id=785910588168359&tsid=0.48038841295056045&source=typeahead")
+        let request = NSURLRequest(URL: url!)
+        self.web.delegate = self
+        self.web.loadRequest(request)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func webViewDidFinishLoad(webView: UIWebView) {
+        dispatch_async(dispatch_get_main_queue(), {
+            self.view.stopLoading()
+        })
     }
     
 

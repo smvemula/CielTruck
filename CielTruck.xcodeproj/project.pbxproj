@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E200100D1BB25FD200478000 /* UserLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E200100C1BB25FD200478000 /* UserLocation.swift */; settings = {ASSET_TAGS = (); }; };
+		E23A0EC71BBF0798001E0421 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E23A0EC61BBF0798001E0421 /* Social.framework */; };
+		E23A0EC91BBF07A3001E0421 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E23A0EC81BBF07A3001E0421 /* Accounts.framework */; };
+		E23A0ECB1BBF07AB001E0421 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E23A0ECA1BBF07AB001E0421 /* UIKit.framework */; };
+		E23A0ECD1BBF080A001E0421 /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E23A0ECC1BBF080A001E0421 /* libicucore.tbd */; };
+		E23A0ECF1BBF0812001E0421 /* libc++.1.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E23A0ECE1BBF0812001E0421 /* libc++.1.tbd */; };
+		E23A0ED01BBF08D9001E0421 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2F2CD7F1BB0C3B40095F2E8 /* StoreKit.framework */; };
+		E2A43EEF1BBEFD4D0097D054 /* Firebase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2A43EED1BBEF6470097D054 /* Firebase.framework */; };
+		E2A43EF21BBEFDC00097D054 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2A43EF11BBEFDC00097D054 /* SystemConfiguration.framework */; };
 		E2C14FFB1B069D6A0064BD14 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C14FFA1B069D6A0064BD14 /* AppDelegate.swift */; };
 		E2C14FFD1B069D6A0064BD14 /* HomeMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C14FFC1B069D6A0064BD14 /* HomeMapViewController.swift */; };
 		E2C14FFF1B069D6A0064BD14 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C14FFE1B069D6A0064BD14 /* SecondViewController.swift */; };
@@ -15,6 +24,24 @@
 		E2C150071B069D6A0064BD14 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2C150051B069D6A0064BD14 /* LaunchScreen.xib */; };
 		E2C150131B069D6A0064BD14 /* CielTruckTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C150121B069D6A0064BD14 /* CielTruckTests.swift */; };
 		E2C1501D1B069E940064BD14 /* SocialConnectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C1501C1B069E940064BD14 /* SocialConnectViewController.swift */; };
+		E2D519E81B0A6ACB00CC487A /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2D519E71B0A6ACB00CC487A /* MapKit.framework */; };
+		E2F2CD761BB0C37A0095F2E8 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2F2CD751BB0C37A0095F2E8 /* CoreLocation.framework */; };
+		E2F2CD781BB0C3870095F2E8 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2F2CD771BB0C3870095F2E8 /* CFNetwork.framework */; };
+		E2F2CD7C1BB0C3980095F2E8 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2F2CD7B1BB0C3980095F2E8 /* AudioToolbox.framework */; };
+		E2F2CD7E1BB0C3AE0095F2E8 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2F2CD7D1BB0C3AE0095F2E8 /* QuartzCore.framework */; };
+		E2F2CD821BB0C3BE0095F2E8 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2F2CD811BB0C3BE0095F2E8 /* Security.framework */; };
+		E2F2CD861BB0C42C0095F2E8 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E2F2CD851BB0C42C0095F2E8 /* libsqlite3.0.tbd */; };
+		E2F2CD881BB0C4380095F2E8 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E2F2CD871BB0C4380095F2E8 /* libz.tbd */; };
+		E2F2CD8A1BB1C30A0095F2E8 /* MapAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F2CD891BB1C30A0095F2E8 /* MapAnnotation.swift */; settings = {ASSET_TAGS = (); }; };
+		E2F2CD941BB210180095F2E8 /* NSJSONSerializationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F2CD8B1BB210180095F2E8 /* NSJSONSerializationExtension.swift */; settings = {ASSET_TAGS = (); }; };
+		E2F2CD951BB210180095F2E8 /* NSDictionaryExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F2CD8C1BB210180095F2E8 /* NSDictionaryExtension.swift */; settings = {ASSET_TAGS = (); }; };
+		E2F2CD961BB210180095F2E8 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F2CD8D1BB210180095F2E8 /* UIViewExtension.swift */; settings = {ASSET_TAGS = (); }; };
+		E2F2CD971BB210180095F2E8 /* UIAlertViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F2CD8E1BB210180095F2E8 /* UIAlertViewExtension.swift */; settings = {ASSET_TAGS = (); }; };
+		E2F2CD981BB210180095F2E8 /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F2CD8F1BB210180095F2E8 /* ArrayExtension.swift */; settings = {ASSET_TAGS = (); }; };
+		E2F2CD991BB210180095F2E8 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F2CD901BB210180095F2E8 /* UIImageExtension.swift */; settings = {ASSET_TAGS = (); }; };
+		E2F2CD9A1BB210180095F2E8 /* NSDateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F2CD911BB210180095F2E8 /* NSDateExtension.swift */; settings = {ASSET_TAGS = (); }; };
+		E2F2CD9B1BB210180095F2E8 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F2CD921BB210180095F2E8 /* UIColorExtension.swift */; settings = {ASSET_TAGS = (); }; };
+		E2F2CD9C1BB210180095F2E8 /* DesignHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F2CD931BB210180095F2E8 /* DesignHelper.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,6 +55,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E200100C1BB25FD200478000 /* UserLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLocation.swift; sourceTree = "<group>"; };
+		E23A0EC61BBF0798001E0421 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		E23A0EC81BBF07A3001E0421 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		E23A0ECA1BBF07AB001E0421 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		E23A0ECC1BBF080A001E0421 /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
+		E23A0ECE1BBF0812001E0421 /* libc++.1.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.1.tbd"; path = "usr/lib/libc++.1.tbd"; sourceTree = SDKROOT; };
+		E2A43EED1BBEF6470097D054 /* Firebase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Firebase.framework; sourceTree = "<group>"; };
+		E2A43EF11BBEFDC00097D054 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		E2C14FF51B069D6A0064BD14 /* CielTruck.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CielTruck.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2C14FF91B069D6A0064BD14 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E2C14FFA1B069D6A0064BD14 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -40,6 +75,26 @@
 		E2C150111B069D6A0064BD14 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E2C150121B069D6A0064BD14 /* CielTruckTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CielTruckTests.swift; sourceTree = "<group>"; };
 		E2C1501C1B069E940064BD14 /* SocialConnectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialConnectViewController.swift; sourceTree = "<group>"; };
+		E2D519E71B0A6ACB00CC487A /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		E2F2CD751BB0C37A0095F2E8 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		E2F2CD771BB0C3870095F2E8 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		E2F2CD791BB0C38D0095F2E8 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		E2F2CD7B1BB0C3980095F2E8 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		E2F2CD7D1BB0C3AE0095F2E8 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		E2F2CD7F1BB0C3B40095F2E8 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		E2F2CD811BB0C3BE0095F2E8 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		E2F2CD851BB0C42C0095F2E8 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		E2F2CD871BB0C4380095F2E8 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		E2F2CD891BB1C30A0095F2E8 /* MapAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapAnnotation.swift; sourceTree = "<group>"; };
+		E2F2CD8B1BB210180095F2E8 /* NSJSONSerializationExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSJSONSerializationExtension.swift; sourceTree = "<group>"; };
+		E2F2CD8C1BB210180095F2E8 /* NSDictionaryExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDictionaryExtension.swift; sourceTree = "<group>"; };
+		E2F2CD8D1BB210180095F2E8 /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		E2F2CD8E1BB210180095F2E8 /* UIAlertViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIAlertViewExtension.swift; sourceTree = "<group>"; };
+		E2F2CD8F1BB210180095F2E8 /* ArrayExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayExtension.swift; sourceTree = "<group>"; };
+		E2F2CD901BB210180095F2E8 /* UIImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
+		E2F2CD911BB210180095F2E8 /* NSDateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateExtension.swift; sourceTree = "<group>"; };
+		E2F2CD921BB210180095F2E8 /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
+		E2F2CD931BB210180095F2E8 /* DesignHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DesignHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +102,22 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E23A0ED01BBF08D9001E0421 /* StoreKit.framework in Frameworks */,
+				E23A0ECF1BBF0812001E0421 /* libc++.1.tbd in Frameworks */,
+				E23A0ECD1BBF080A001E0421 /* libicucore.tbd in Frameworks */,
+				E23A0ECB1BBF07AB001E0421 /* UIKit.framework in Frameworks */,
+				E23A0EC91BBF07A3001E0421 /* Accounts.framework in Frameworks */,
+				E23A0EC71BBF0798001E0421 /* Social.framework in Frameworks */,
+				E2A43EF21BBEFDC00097D054 /* SystemConfiguration.framework in Frameworks */,
+				E2A43EEF1BBEFD4D0097D054 /* Firebase.framework in Frameworks */,
+				E2F2CD881BB0C4380095F2E8 /* libz.tbd in Frameworks */,
+				E2F2CD861BB0C42C0095F2E8 /* libsqlite3.0.tbd in Frameworks */,
+				E2F2CD821BB0C3BE0095F2E8 /* Security.framework in Frameworks */,
+				E2F2CD7E1BB0C3AE0095F2E8 /* QuartzCore.framework in Frameworks */,
+				E2F2CD7C1BB0C3980095F2E8 /* AudioToolbox.framework in Frameworks */,
+				E2F2CD781BB0C3870095F2E8 /* CFNetwork.framework in Frameworks */,
+				E2F2CD761BB0C37A0095F2E8 /* CoreLocation.framework in Frameworks */,
+				E2D519E81B0A6ACB00CC487A /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +134,22 @@
 		E2C14FEC1B069D6A0064BD14 = {
 			isa = PBXGroup;
 			children = (
+				E23A0ECE1BBF0812001E0421 /* libc++.1.tbd */,
+				E23A0ECC1BBF080A001E0421 /* libicucore.tbd */,
+				E23A0ECA1BBF07AB001E0421 /* UIKit.framework */,
+				E23A0EC81BBF07A3001E0421 /* Accounts.framework */,
+				E23A0EC61BBF0798001E0421 /* Social.framework */,
+				E2A43EF11BBEFDC00097D054 /* SystemConfiguration.framework */,
+				E2F2CD871BB0C4380095F2E8 /* libz.tbd */,
+				E2F2CD851BB0C42C0095F2E8 /* libsqlite3.0.tbd */,
+				E2F2CD811BB0C3BE0095F2E8 /* Security.framework */,
+				E2F2CD7F1BB0C3B40095F2E8 /* StoreKit.framework */,
+				E2F2CD7D1BB0C3AE0095F2E8 /* QuartzCore.framework */,
+				E2F2CD7B1BB0C3980095F2E8 /* AudioToolbox.framework */,
+				E2F2CD791BB0C38D0095F2E8 /* CoreGraphics.framework */,
+				E2F2CD771BB0C3870095F2E8 /* CFNetwork.framework */,
+				E2F2CD751BB0C37A0095F2E8 /* CoreLocation.framework */,
+				E2D519E71B0A6ACB00CC487A /* MapKit.framework */,
 				E2C14FF71B069D6A0064BD14 /* CielTruck */,
 				E2C1500F1B069D6A0064BD14 /* CielTruckTests */,
 				E2C14FF61B069D6A0064BD14 /* Products */,
@@ -81,6 +168,8 @@
 		E2C14FF71B069D6A0064BD14 /* CielTruck */ = {
 			isa = PBXGroup;
 			children = (
+				E2A43EED1BBEF6470097D054 /* Firebase.framework */,
+				E2F2CD9D1BB2101D0095F2E8 /* Extensions */,
 				E2C14FFA1B069D6A0064BD14 /* AppDelegate.swift */,
 				E2C14FFC1B069D6A0064BD14 /* HomeMapViewController.swift */,
 				E2C14FFE1B069D6A0064BD14 /* SecondViewController.swift */,
@@ -89,6 +178,8 @@
 				E2C150031B069D6A0064BD14 /* Images.xcassets */,
 				E2C150051B069D6A0064BD14 /* LaunchScreen.xib */,
 				E2C14FF81B069D6A0064BD14 /* Supporting Files */,
+				E2F2CD891BB1C30A0095F2E8 /* MapAnnotation.swift */,
+				E200100C1BB25FD200478000 /* UserLocation.swift */,
 			);
 			path = CielTruck;
 			sourceTree = "<group>";
@@ -116,6 +207,22 @@
 				E2C150111B069D6A0064BD14 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E2F2CD9D1BB2101D0095F2E8 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				E2F2CD8B1BB210180095F2E8 /* NSJSONSerializationExtension.swift */,
+				E2F2CD8C1BB210180095F2E8 /* NSDictionaryExtension.swift */,
+				E2F2CD8D1BB210180095F2E8 /* UIViewExtension.swift */,
+				E2F2CD8E1BB210180095F2E8 /* UIAlertViewExtension.swift */,
+				E2F2CD8F1BB210180095F2E8 /* ArrayExtension.swift */,
+				E2F2CD901BB210180095F2E8 /* UIImageExtension.swift */,
+				E2F2CD911BB210180095F2E8 /* NSDateExtension.swift */,
+				E2F2CD921BB210180095F2E8 /* UIColorExtension.swift */,
+				E2F2CD931BB210180095F2E8 /* DesignHelper.swift */,
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -162,11 +269,18 @@
 		E2C14FED1B069D6A0064BD14 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftMigration = 0700;
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0630;
 				ORGANIZATIONNAME = "Vemula, Manoj (Contractor)";
 				TargetAttributes = {
 					E2C14FF41B069D6A0064BD14 = {
 						CreatedOnToolsVersion = 6.3.1;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					E2C1500B1B069D6A0064BD14 = {
 						CreatedOnToolsVersion = 6.3.1;
@@ -218,9 +332,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E2F2CD9A1BB210180095F2E8 /* NSDateExtension.swift in Sources */,
 				E2C1501D1B069E940064BD14 /* SocialConnectViewController.swift in Sources */,
+				E2F2CD971BB210180095F2E8 /* UIAlertViewExtension.swift in Sources */,
+				E2F2CD9C1BB210180095F2E8 /* DesignHelper.swift in Sources */,
+				E2F2CD941BB210180095F2E8 /* NSJSONSerializationExtension.swift in Sources */,
+				E2F2CD951BB210180095F2E8 /* NSDictionaryExtension.swift in Sources */,
+				E2F2CD991BB210180095F2E8 /* UIImageExtension.swift in Sources */,
+				E2F2CD9B1BB210180095F2E8 /* UIColorExtension.swift in Sources */,
+				E2F2CD8A1BB1C30A0095F2E8 /* MapAnnotation.swift in Sources */,
+				E200100D1BB25FD200478000 /* UserLocation.swift in Sources */,
+				E2F2CD981BB210180095F2E8 /* ArrayExtension.swift in Sources */,
 				E2C14FFF1B069D6A0064BD14 /* SecondViewController.swift in Sources */,
 				E2C14FFB1B069D6A0064BD14 /* AppDelegate.swift in Sources */,
+				E2F2CD961BB210180095F2E8 /* UIViewExtension.swift in Sources */,
 				E2C14FFD1B069D6A0064BD14 /* HomeMapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -299,9 +424,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "09b044d5-2078-476c-9e18-b11d064d62d5";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -338,8 +464,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PROVISIONING_PROFILE = "09b044d5-2078-476c-9e18-b11d064d62d5";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -350,9 +477,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/CielTruck",
+				);
 				INFOPLIST_FILE = CielTruck/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.CielTruck.DessertBar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "09b044d5-2078-476c-9e18-b11d064d62d5";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -360,9 +495,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/CielTruck",
+				);
 				INFOPLIST_FILE = CielTruck/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.CielTruck.DessertBar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "09b044d5-2078-476c-9e18-b11d064d62d5";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -419,6 +562,7 @@
 				E2C150181B069D6A0064BD14 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E2C150191B069D6A0064BD14 /* Build configuration list for PBXNativeTarget "CielTruckTests" */ = {
 			isa = XCConfigurationList;
@@ -427,6 +571,7 @@
 				E2C1501B1B069D6A0064BD14 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
