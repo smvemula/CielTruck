@@ -16,7 +16,7 @@ class SecondViewController: UIViewController, UITableViewDelegate {
     @IBOutlet var menuTable : UITableView!
     var ref : Firebase!
     
-    var isAdmin = false
+    var isAdmin = true
 
     func orderSummary() -> String {
         var temp = ""

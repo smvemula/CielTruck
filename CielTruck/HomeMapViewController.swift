@@ -19,7 +19,7 @@ class HomeMapViewController: UIViewController, UITextFieldDelegate, CLLocationMa
     var ref : Firebase!
     
     var isEditMode = false
-    var isAdmin = false
+    var isAdmin = true
     
     @IBAction func segmentValueChanged(sender: UISegmentedControl) {
         self.addressTextfield.hidden = true

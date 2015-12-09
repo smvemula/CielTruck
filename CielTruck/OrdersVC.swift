@@ -14,7 +14,8 @@ class OrdersVC: UIViewController {
     var myOrders = [NSDictionary]()
     @IBOutlet var ordersTable : UITableView!
     
-    var isAdmin = false
+    var adminDict = NSDictionary()
+    var isAdmin = true
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +26,7 @@ class OrdersVC: UIViewController {
             Firebase(url:"https://cieldessertbar.firebaseio.com/Orders").observeEventType(.Value, withBlock: { snapshot -> Void in
                 print("Current User orders are \(snapshot)")
                 if let value = snapshot.value as? NSDictionary {
+                    self.adminDict = value
                     self.myOrders = value.allValues as! [NSDictionary]
                     self.myOrders = self.myOrders.sort{return $0["timestamp"] as! Double >  $1["timestamp"] as! Double}
                     self.ordersTable.reloadData()
@@ -83,7 +85,16 @@ extension OrdersVC {
             cell.textLabel?.text = order
         }
         if let date = self.myOrders[indexPath.row]["timestamp"] as? Double {
-            cell.detailTextLabel?.text = NSDate.getDefaultTimeUsingGMTDoubleValue(date, dateFormat: "MM/d/yyyy h.mm aa")
+            let detailed = NSDate.getDefaultTimeUsingGMTDoubleValue(date, dateFormat: "MM/d/yyyy h.mm aa")
+            if isAdmin {
+                if let phone = self.myOrders[indexPath.row]["phone"] as? String {
+                    if let name = self.myOrders[indexPath.row]["name"] as? String {
+                        cell.detailTextLabel?.text = "\(name) \(phone) \(detailed)"
+                    }
+                }
+            } else {
+                cell.detailTextLabel?.text = detailed
+            }
         }
         
         if let statusString = self.myOrders[indexPath.row]["status"] as? String {
@@ -97,6 +108,34 @@ extension OrdersVC {
         
         
         return cell
+    }
+    
+    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+        var buttons = [UITableViewRowAction]()
+        if let statusString = self.myOrders[indexPath.row]["status"] as? String {
+            let button = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: statusString == "MAKING" ? "DONE" : "MAKING") { (action, indexPath) -> Void in
+                let keys = self.adminDict.allKeys as!  [String]
+                let key = keys[indexPath.row]
+                Firebase(url:"https://cieldessertbar.firebaseio.com/Orders/\(key)/status").setValue(statusString == "MAKING" ? "DONE" : "MAKING")
+            }
+            button.backgroundColor = UIColor.darkPinkCielColor
+            if statusString != "DONE" {
+                buttons.append(button)
+            }
+        }
+        if let phone = self.myOrders[indexPath.row]["phone"] as? String {
+            let button1 = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Call") { (action, indexPath) -> Void in
+                UIApplication.sharedApplication().openURL(NSURL(string: "tel://+91\(phone)")!)
+            }
+            button1.backgroundColor = UIColor.brownCielColor
+            buttons.append(button1)
+        }
+        
+        return buttons
+    }
+    
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return self.isAdmin
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
