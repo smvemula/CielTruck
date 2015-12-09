@@ -58,7 +58,9 @@ class SecondViewController: UIViewController, UITableViewDelegate {
         self.navigationController?.navigationBar.barTintColor = UIColor.darkPinkCielColor
         self.view.backgroundColor = UIColor.cielBackgroundColor
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "startOrdering", name: "order", object: nil)
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "New Order", style: UIBarButtonItemStyle.Plain, target: self, action: "startOrdering")
+        if !isAdmin {
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "New Order", style: UIBarButtonItemStyle.Plain, target: self, action: "startOrdering")
+        }
         if isAdmin {
             Firebase(url:"https://cieldessertbar.firebaseio.com/Orders").observeEventType(.Value, withBlock: { snapshot -> Void in
                 print("Current User orders are \(snapshot)")

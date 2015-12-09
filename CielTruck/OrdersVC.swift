@@ -113,10 +113,12 @@ extension OrdersVC {
     func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
         var buttons = [UITableViewRowAction]()
         if let statusString = self.myOrders[indexPath.row]["status"] as? String {
-            let button = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: statusString == "MAKING" ? "DONE" : "MAKING") { (action, indexPath) -> Void in
-                let keys = self.adminDict.allKeys as!  [String]
-                let key = keys[indexPath.row]
-                Firebase(url:"https://cieldessertbar.firebaseio.com/Orders/\(key)/status").setValue(statusString == "MAKING" ? "DONE" : "MAKING")
+            let button = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: statusString == "NEW" ? "MAKING" : "DONE") { (action, indexPath) -> Void in
+                for (key,value) in self.adminDict {
+                    if value as! NSDictionary == self.myOrders[indexPath.row] {
+                        Firebase(url:"https://cieldessertbar.firebaseio.com/Orders/\(key)/status").setValue(statusString == "NEW" ? "MAKING" : "DONE")
+                    }
+                }
             }
             button.backgroundColor = UIColor.darkPinkCielColor
             if statusString != "DONE" {
