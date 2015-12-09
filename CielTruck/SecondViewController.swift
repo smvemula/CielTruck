@@ -9,19 +9,131 @@
 import UIKit
 import Firebase
 
-class SecondViewController: UIViewController {
+class SecondViewController: UIViewController, UITableViewDelegate {
     
     var menu = [NSDictionary]()
     var itemsDict : [String: NSDictionary] = Dictionary()
     @IBOutlet var menuTable : UITableView!
     var ref : Firebase!
 
+    func orderSummary() -> String {
+        var temp = ""
+        for each in self.selectedItems {
+            if temp.utf16.count > 0 {
+                temp = "\(temp), \(each)"
+            } else {
+                temp = each
+            }
+        }
+        return temp
+    }
+    var isOrdering = false
+    
+    var selectedItems = [String]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
         ref = Firebase(url:"https://cieldessertbar.firebaseio.com/Menu")
         self.getAllDataForMenu()
+        self.navigationController?.navigationBar.barTintColor = UIColor.darkPinkCielColor
+        self.view.backgroundColor = UIColor.cielBackgroundColor
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "startOrdering", name: "order", object: nil)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "New Order", style: UIBarButtonItemStyle.Plain, target: self, action: "startOrdering")
+    }
+    
+    func startOrdering() {
+        self.isOrdering = true
+        self.selectedItems = []
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.Plain, target: self, action: "cancelOrder")
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Order(0)", style: UIBarButtonItemStyle.Plain, target: self, action: "goAheadOrder")
+        self.menuTable.reloadData()
+    }
+    
+    func cancelOrder() {
+        if self.selectedItems.count > 0 {
+            let order = UIAlertController(title: "Cancel Order", message: "Would you like to cancel this order \(self.orderSummary()) ?", preferredStyle: UIAlertControllerStyle.Alert)
+            order.view.tintColor = UIColor.darkPinkCielColor
+            let cancelOrder = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Destructive, handler: { action in
+                self.resetValues()
+            })
+            order.addAction(cancelOrder)
+            let nothing = UIAlertAction(title: "NO", style: UIAlertActionStyle.Cancel, handler: { action in
+            })
+            order.addAction(nothing)
+            self.presentViewController(order, animated: true, completion: {
+                order.view.tintColor = UIColor.darkPinkCielColor
+            })
+        } else {
+            self.resetValues()
+        }
+    }
+    
+    func resetValues() {
+        self.isOrdering = false
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "New Order", style: UIBarButtonItemStyle.Plain, target: self, action: "startOrdering")
+        self.selectedItems = []
+        self.navigationItem.leftBarButtonItem = nil
+        self.menuTable.reloadData()
+    }
+    
+    func goAheadOrder() {
+        if self.selectedItems.count == 0 {
+            UIAlertView.showAlertView("Error", text: "No items selected", vc: self)
+        } else {
+            let order = UIAlertController(title: "New Ciel Order", message: "Placing order for \(self.orderSummary()) items", preferredStyle: UIAlertControllerStyle.Alert)
+            order.view.tintColor = UIColor.darkPinkCielColor
+            
+            order.addTextFieldWithConfigurationHandler({textField in
+                textField.placeholder = "Enter Your name"
+                textField.autocapitalizationType = UITextAutocapitalizationType.Sentences
+            })
+            order.addTextFieldWithConfigurationHandler({textField in
+                textField.placeholder = "Enter Your Phone number"
+                textField.keyboardType = UIKeyboardType.PhonePad
+            })
+            let doOrder = UIAlertAction(title: "Order", style: UIAlertActionStyle.Default, handler: { action in
+                var isError = true
+                if let textTyped = order.textFields![0].text {
+                    if textTyped.utf16.count > 0 {
+                        isError = false
+                    }
+                }
+                if let textTyped = order.textFields![1].text {
+                    if textTyped.utf16.count == 10 {
+                        isError = isError ? isError : false
+                    } else {
+                        isError = true
+                    }
+                }
+                if isError {
+                    let error = UIAlertController(title: "Error", message: "Name & Valid Phone number are required to complete your order.", preferredStyle: UIAlertControllerStyle.Alert)
+                    order.view.tintColor = UIColor.darkPinkCielColor
+                    let ok = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: { action in
+                        self.presentViewController(order, animated: true, completion: {
+                            order.view.tintColor = UIColor.darkPinkCielColor
+                        })
+                    })
+                    error.addAction(ok)
+                    self.presentViewController(error, animated: true, completion: {
+                        error.view.tintColor = UIColor.darkPinkCielColor
+                    })
+                } else {
+                    //Complete Order
+                    Firebase(url:"https://cieldessertbar.firebaseio.com/Orders").childByAutoId().setValue(["timestamp": FirebaseServerValue.timestamp(), "name": order.textFields![0].text!, "phone": order.textFields![1].text!, "order": self.orderSummary()])
+                    UIAlertView.showAlertView("Success", text: "Placed order for \(self.orderSummary()) items", vc: self)
+                    self.resetValues()
+                }
+            })
+            order.addAction(doOrder)
+            let nothing = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: { action in
+            })
+            order.addAction(nothing)
+            self.presentViewController(order, animated: true, completion: {
+                order.view.tintColor = UIColor.darkPinkCielColor
+            })
+        }
     }
     
     func getAllDataForMenu() {
@@ -85,15 +197,29 @@ extension SecondViewController {
             cell = reuseCell
         } else {
             cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "CELL")
-            cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
         }
         
+        cell.textLabel?.textColor = UIColor.brownCielColor
+        cell.textLabel?.highlightedTextColor = UIColor.darkPinkCielColor
+        cell.textLabel?.font = UIFont.boldSystemFontOfSize(15)
+        cell.detailTextLabel?.textColor = UIColor.brownCielColor
+        cell.detailTextLabel?.highlightedTextColor = UIColor.darkPinkCielColor
         
         let key = self.menu[indexPath.section]["name"] as! String
         if let item = self.itemsDict[key] {
             let keys = item.allKeys as! [String]
             if let object = item[keys[indexPath.row]] as? NSDictionary {
                 cell.textLabel?.text = keys[indexPath.row]
+                if self.isOrdering {
+                    cell.accessoryView = UIImageView(image: UIImage(named: "checkMark")?.tintWithColor(UIColor.lightGrayColor()), highlightedImage: UIImage(named: "checkMark")?.tintWithColor(UIColor.darkPinkCielColor))
+                    if self.selectedItems.contains("\(keys[indexPath.row])(\(key))") {
+                        cell.setSelected(true, animated: false)
+                    } else {
+                        cell.setSelected(false, animated: false)
+                    }
+                } else{
+                    cell.accessoryView = nil
+                }
                 cell.detailTextLabel?.text = ""
                 if let price = object["price"] as? Int {
                     if price > 0 {
@@ -102,14 +228,54 @@ extension SecondViewController {
                 }
             }
             
-            cell.imageView?.image = UIImage(named: "cupcake")?.tintWithColor(self.getRandomColor())
+            var imageName = ""
+            switch key {
+            case "Brownies":
+                imageName = "brownie"
+            case "Cookies":
+                imageName = "cookies1"
+            case "Choux Pastry":
+                imageName = "pastry2"
+            case "Desserts":
+                imageName = "dessert"
+            case "Loafs":
+                imageName = "loafs"
+            case "Lamingtons":
+                imageName = "pastry1"
+            case "Muffins":
+                imageName = "muffin1"
+            case "Pastries":
+                imageName = "pastry5"
+            default:
+                imageName = "cupcake"
+            }
+            
+            cell.imageView?.image = UIImage(named: imageName)?.tintWithColor(self.getRandomColor())
         }
         
         return cell
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        if isOrdering {
+            let key = self.menu[indexPath.section]["name"] as! String
+            if let item = self.itemsDict[key] {
+                let keys = item.allKeys as! [String]
+                self.selectedItems.append("\(keys[indexPath.row])(\(key))")
+                self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Order(\(self.selectedItems.count))", style: UIBarButtonItemStyle.Plain, target: self, action: "goAheadOrder")
+            }
+        } else {
+            self.menuTable.deselectRowAtIndexPath(indexPath, animated: false)
+        }
+    }
+    
+    func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+        let key = self.menu[indexPath.section]["name"] as! String
+        if let item = self.itemsDict[key] {
+            let keys = item.allKeys as! [String]
+            self.selectedItems.removeObject(&self.selectedItems, object: "\(keys[indexPath.row])(\(key))")
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Order(\(self.selectedItems.count))", style: UIBarButtonItemStyle.Plain, target: self, action: "goAheadOrder")
+        }
     }
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 50.0
@@ -135,7 +301,7 @@ extension SecondViewController {
         }
         sectionTitle.textAlignment = NSTextAlignment.Left
         sectionTitle.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.1)
-        sectionTitle.textColor = UIColor.blackColor()
+        sectionTitle.textColor = UIColor.brownCielColor
         sectionTitle.font = UIFont.systemFontOfSize(15)
         sectionView.addSubview(sectionTitle)
         
@@ -145,11 +311,11 @@ extension SecondViewController {
         }
         detailTitle.textAlignment = NSTextAlignment.Right
         detailTitle.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.1)
-        detailTitle.textColor = UIColor.blackColor()
+        detailTitle.textColor = UIColor.brownCielColor
         detailTitle.font = UIFont.systemFontOfSize(12)
         sectionView.addSubview(detailTitle)
         
-        sectionView.backgroundColor = UIColor.orangeColor()
+        sectionView.backgroundColor = UIColor.pinkCielColor
         
         return sectionView
     }

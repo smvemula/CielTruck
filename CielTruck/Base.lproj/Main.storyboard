@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A282b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -73,22 +73,9 @@
                         </variation>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
-                    <navigationItem key="navigationItem" title="Truck Finder" id="bAj-J5-WVg">
-                        <barButtonItem key="leftBarButtonItem" id="TS7-5R-hFC">
-                            <connections>
-                                <action selector="cancel" destination="9pv-A4-QxB" id="Z24-IY-1W9"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Edit" id="R7j-Qa-7Ze">
-                            <connections>
-                                <action selector="editsave" destination="9pv-A4-QxB" id="Ijp-eS-KDe"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Truck Finder" id="bAj-J5-WVg"/>
                     <connections>
                         <outlet property="addressTextfield" destination="8fl-3H-PW2" id="ZPz-5t-HaW"/>
-                        <outlet property="cancelButton" destination="TS7-5R-hFC" id="XVC-mz-MW2"/>
-                        <outlet property="editSaveButton" destination="R7j-Qa-7Ze" id="tk6-Or-3qm"/>
                         <outlet property="locationOptions" destination="8VV-Gw-Mu7" id="da5-oF-sEl"/>
                         <outlet property="truckLocatorMapView" destination="LAv-sl-Ivd" id="Ufy-7t-3IG"/>
                     </connections>
@@ -106,11 +93,11 @@
                         <viewControllerLayoutGuide type="bottom" id="Djb-ko-YwX"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="QS5-Rx-YEW">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="adQ-0f-7LM">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="605"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="adQ-0f-7LM">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
@@ -122,10 +109,10 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="adQ-0f-7LM" firstAttribute="top" secondItem="L7p-HK-0SC" secondAttribute="bottom" constant="-64" id="BR7-0t-H9H"/>
+                            <constraint firstItem="adQ-0f-7LM" firstAttribute="top" secondItem="L7p-HK-0SC" secondAttribute="bottom" id="BR7-0t-H9H"/>
                             <constraint firstAttribute="trailingMargin" secondItem="adQ-0f-7LM" secondAttribute="trailing" constant="-20" id="ODm-nT-iAW"/>
                             <constraint firstItem="adQ-0f-7LM" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leadingMargin" constant="-20" id="rCu-ku-UdC"/>
-                            <constraint firstItem="Djb-ko-YwX" firstAttribute="top" secondItem="adQ-0f-7LM" secondAttribute="bottom" constant="-54" id="uEC-Tq-gCQ"/>
+                            <constraint firstItem="Djb-ko-YwX" firstAttribute="top" secondItem="adQ-0f-7LM" secondAttribute="bottom" id="uEC-Tq-gCQ"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Menu" id="xbK-GM-zue"/>
@@ -146,11 +133,11 @@
                         <viewControllerLayoutGuide type="bottom" id="jyc-ou-1zY"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Bd4-Xp-u0J">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BK1-oD-RTG">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="605"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </webView>
@@ -159,8 +146,8 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="BK1-oD-RTG" firstAttribute="leading" secondItem="Bd4-Xp-u0J" secondAttribute="leadingMargin" constant="-20" id="6iZ-gI-SSk"/>
-                            <constraint firstItem="BK1-oD-RTG" firstAttribute="top" secondItem="YmN-1d-22D" secondAttribute="bottom" constant="-64" id="GPX-H7-Ooc"/>
-                            <constraint firstItem="jyc-ou-1zY" firstAttribute="top" secondItem="BK1-oD-RTG" secondAttribute="bottom" constant="-54" id="Mfj-hW-wmt"/>
+                            <constraint firstItem="BK1-oD-RTG" firstAttribute="top" secondItem="YmN-1d-22D" secondAttribute="bottom" id="GPX-H7-Ooc"/>
+                            <constraint firstItem="jyc-ou-1zY" firstAttribute="top" secondItem="BK1-oD-RTG" secondAttribute="bottom" id="Mfj-hW-wmt"/>
                             <constraint firstAttribute="trailingMargin" secondItem="BK1-oD-RTG" secondAttribute="trailing" constant="-20" id="QX8-RB-RsD"/>
                         </constraints>
                     </view>
@@ -178,11 +165,12 @@
             <objects>
                 <tabBarController id="49e-Tb-3d3" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="W28-zg-YXA">
+                    <tabBar key="tabBar" contentMode="scaleToFill" translucent="NO" id="W28-zg-YXA">
                         <rect key="frame" x="0.0" y="975" width="768" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <animations/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
                         <segue destination="1PG-i6-dhw" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
@@ -200,8 +188,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Xrg-MQ-aM8" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Menu" image="cupcake" id="cPa-gy-q4n"/>
                     <toolbarItems/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="7Hl-R5-xGb">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="7Hl-R5-xGb">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <animations/>
@@ -221,8 +208,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="7t6-Wk-lRr" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Social" image="social" id="smq-w9-D9A"/>
                     <toolbarItems/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="sF7-an-abs">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="sF7-an-abs">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <animations/>
@@ -234,7 +220,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HCb-6o-Ius" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="93" y="815"/>
+            <point key="canvasLocation" x="99" y="815"/>
         </scene>
         <!--Truck-->
         <scene sceneID="Ys7-XD-G6Y">
@@ -242,8 +228,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="1PG-i6-dhw" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Truck" image="Truck" id="acW-dT-cKf"/>
                     <toolbarItems/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="dPZ-Yc-Op3">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="dPZ-Yc-Op3">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <animations/>
@@ -259,7 +244,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Truck" width="30" height="30"/>
+        <image name="Truck" width="32" height="32"/>
         <image name="cupcake" width="25" height="31"/>
         <image name="social" width="30" height="30"/>
     </resources>

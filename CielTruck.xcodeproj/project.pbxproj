@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E200100D1BB25FD200478000 /* UserLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E200100C1BB25FD200478000 /* UserLocation.swift */; settings = {ASSET_TAGS = (); }; };
+		E200100D1BB25FD200478000 /* UserLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E200100C1BB25FD200478000 /* UserLocation.swift */; };
 		E23A0EC71BBF0798001E0421 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E23A0EC61BBF0798001E0421 /* Social.framework */; };
 		E23A0EC91BBF07A3001E0421 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E23A0EC81BBF07A3001E0421 /* Accounts.framework */; };
 		E23A0ECB1BBF07AB001E0421 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E23A0ECA1BBF07AB001E0421 /* UIKit.framework */; };
@@ -32,16 +32,16 @@
 		E2F2CD821BB0C3BE0095F2E8 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2F2CD811BB0C3BE0095F2E8 /* Security.framework */; };
 		E2F2CD861BB0C42C0095F2E8 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E2F2CD851BB0C42C0095F2E8 /* libsqlite3.0.tbd */; };
 		E2F2CD881BB0C4380095F2E8 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E2F2CD871BB0C4380095F2E8 /* libz.tbd */; };
-		E2F2CD8A1BB1C30A0095F2E8 /* MapAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F2CD891BB1C30A0095F2E8 /* MapAnnotation.swift */; settings = {ASSET_TAGS = (); }; };
-		E2F2CD941BB210180095F2E8 /* NSJSONSerializationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F2CD8B1BB210180095F2E8 /* NSJSONSerializationExtension.swift */; settings = {ASSET_TAGS = (); }; };
-		E2F2CD951BB210180095F2E8 /* NSDictionaryExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F2CD8C1BB210180095F2E8 /* NSDictionaryExtension.swift */; settings = {ASSET_TAGS = (); }; };
-		E2F2CD961BB210180095F2E8 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F2CD8D1BB210180095F2E8 /* UIViewExtension.swift */; settings = {ASSET_TAGS = (); }; };
-		E2F2CD971BB210180095F2E8 /* UIAlertViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F2CD8E1BB210180095F2E8 /* UIAlertViewExtension.swift */; settings = {ASSET_TAGS = (); }; };
-		E2F2CD981BB210180095F2E8 /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F2CD8F1BB210180095F2E8 /* ArrayExtension.swift */; settings = {ASSET_TAGS = (); }; };
-		E2F2CD991BB210180095F2E8 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F2CD901BB210180095F2E8 /* UIImageExtension.swift */; settings = {ASSET_TAGS = (); }; };
-		E2F2CD9A1BB210180095F2E8 /* NSDateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F2CD911BB210180095F2E8 /* NSDateExtension.swift */; settings = {ASSET_TAGS = (); }; };
-		E2F2CD9B1BB210180095F2E8 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F2CD921BB210180095F2E8 /* UIColorExtension.swift */; settings = {ASSET_TAGS = (); }; };
-		E2F2CD9C1BB210180095F2E8 /* DesignHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F2CD931BB210180095F2E8 /* DesignHelper.swift */; settings = {ASSET_TAGS = (); }; };
+		E2F2CD8A1BB1C30A0095F2E8 /* MapAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F2CD891BB1C30A0095F2E8 /* MapAnnotation.swift */; };
+		E2F2CD941BB210180095F2E8 /* NSJSONSerializationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F2CD8B1BB210180095F2E8 /* NSJSONSerializationExtension.swift */; };
+		E2F2CD951BB210180095F2E8 /* NSDictionaryExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F2CD8C1BB210180095F2E8 /* NSDictionaryExtension.swift */; };
+		E2F2CD961BB210180095F2E8 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F2CD8D1BB210180095F2E8 /* UIViewExtension.swift */; };
+		E2F2CD971BB210180095F2E8 /* UIAlertViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F2CD8E1BB210180095F2E8 /* UIAlertViewExtension.swift */; };
+		E2F2CD981BB210180095F2E8 /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F2CD8F1BB210180095F2E8 /* ArrayExtension.swift */; };
+		E2F2CD991BB210180095F2E8 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F2CD901BB210180095F2E8 /* UIImageExtension.swift */; };
+		E2F2CD9A1BB210180095F2E8 /* NSDateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F2CD911BB210180095F2E8 /* NSDateExtension.swift */; };
+		E2F2CD9B1BB210180095F2E8 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F2CD921BB210180095F2E8 /* UIColorExtension.swift */; };
+		E2F2CD9C1BB210180095F2E8 /* DesignHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F2CD931BB210180095F2E8 /* DesignHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -276,6 +276,7 @@
 				TargetAttributes = {
 					E2C14FF41B069D6A0064BD14 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = 3TNYZT7AEU;
 						SystemCapabilities = {
 							com.apple.Maps.iOS = {
 								enabled = 1;
@@ -427,7 +428,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "09b044d5-2078-476c-9e18-b11d064d62d5";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -466,7 +467,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "09b044d5-2078-476c-9e18-b11d064d62d5";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -477,6 +478,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/CielTruck",
@@ -486,7 +488,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.CielTruck.DessertBar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "09b044d5-2078-476c-9e18-b11d064d62d5";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -495,6 +497,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/CielTruck",
@@ -504,7 +507,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.CielTruck.DessertBar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "09b044d5-2078-476c-9e18-b11d064d62d5";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

@@ -12,15 +12,15 @@ import QuartzCore
 
 extension UIView {
     public func startLoading(){
-        self.startLoading(UIActivityIndicatorViewStyle.WhiteLarge, alpha: 0.8, message: "", fontSize: 17.0)
+        self.startLoading(UIActivityIndicatorViewStyle.WhiteLarge, alpha: 1, message: "", fontSize: 17.0)
     }
     
     public func startLoadingWithText(message: String) {
-        self.startLoading(UIActivityIndicatorViewStyle.WhiteLarge, alpha: 0.8, message: message, fontSize: 17.0)
+        self.startLoading(UIActivityIndicatorViewStyle.WhiteLarge, alpha: 1, message: message, fontSize: 17.0)
     }
     
     public func startLoadingWithText(message: String, fontSize: CGFloat) {
-        self.startLoading(UIActivityIndicatorViewStyle.WhiteLarge, alpha: 0.8, message: message, fontSize: fontSize)
+        self.startLoading(UIActivityIndicatorViewStyle.WhiteLarge, alpha: 1, message: message, fontSize: fontSize)
     }
     
     //Used for cancelling the tune API call
@@ -52,11 +52,12 @@ extension UIView {
         
         self.stopLoading()
         dispatch_async(dispatch_get_main_queue(), {let loadingView = UIView(frame: self.bounds)
-            loadingView.backgroundColor = UIColor.darkGrayColor().colorWithAlphaComponent(alpha)
+            loadingView.backgroundColor = UIColor.pinkCielColor.colorWithAlphaComponent(alpha)
             loadingView.tag = 9999
             
             let indicator = UIActivityIndicatorView(activityIndicatorStyle: indicatorStyle)
             indicator.startAnimating()
+            indicator.color = UIColor.darkPinkCielColor
             indicator.center = loadingView.center
             
             

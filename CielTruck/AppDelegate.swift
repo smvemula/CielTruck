@@ -18,6 +18,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
+        UITabBar.appearance().tintColor = UIColor.darkPinkCielColor
+        //UITabBarItem.appearance().setTitleTextAttributes([NSFontAttributeName: DesignHelper.defaultRegular(10)], forState: UIControlState.Normal)
+        UINavigationBar.appearance().tintColor = UIColor.whiteColor()
+        
         return true
     }
 

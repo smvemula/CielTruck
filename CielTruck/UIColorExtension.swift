@@ -55,4 +55,27 @@ extension UIColor
 //        table.separatorColor = UIColor.footballColor
 //        table.tintColor = UIColor.footballColor
     }
+    
+    class var blueCielColor : UIColor {
+        return UIColor.colorWithHexString("#5FDEDD", andAlpha: 1)
+    }
+    
+    class var darkPinkCielColor : UIColor {
+        return UIColor.colorWithHexString("#FE7BAB", andAlpha: 1)
+    }
+    
+    class var pinkCielColor : UIColor {
+        return UIColor.colorWithHexString("#FDD2E1", andAlpha: 1)
+    }
+    
+    class var cielBackgroundColor : UIColor {
+        return UIColor.colorWithHexString("#FDF4F7", andAlpha: 1)
+    }
+    
+    class var brownCielColor : UIColor {
+        return UIColor.colorWithHexString("#6A472C", andAlpha: 1)
+    }
+    
+    
+    
 }

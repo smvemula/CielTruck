@@ -21,6 +21,8 @@ class SocialConnectViewController: UIViewController, UIWebViewDelegate {
         let request = NSURLRequest(URL: url!)
         self.web.delegate = self
         self.web.loadRequest(request)
+        self.navigationController?.navigationBar.barTintColor = UIColor.darkPinkCielColor
+        self.view.backgroundColor = UIColor.cielBackgroundColor
     }
 
     override func didReceiveMemoryWarning() {
