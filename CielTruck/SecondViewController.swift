@@ -30,7 +30,7 @@ class SecondViewController: UIViewController, UITableViewDelegate {
         return temp
     }
     var isOrdering = false
-    
+    var totalPrice = 0
     var selectedItems = [String]()
     
     override func viewWillAppear(animated: Bool) {
@@ -58,10 +58,12 @@ class SecondViewController: UIViewController, UITableViewDelegate {
         self.navigationController?.navigationBar.barTintColor = UIColor.darkPinkCielColor
         self.view.backgroundColor = UIColor.cielBackgroundColor
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "startOrdering", name: "order", object: nil)
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "New Order", style: UIBarButtonItemStyle.Plain, target: self, action: "startOrdering")
+        if !isAdmin {
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "New Order", style: UIBarButtonItemStyle.Plain, target: self, action: "startOrdering")
+        }
         if isAdmin {
             Firebase(url:"https://cieldessertbar.firebaseio.com/Orders").observeEventType(.Value, withBlock: { snapshot -> Void in
-                print("Current User orders are \(snapshot)")
+                print("Admin orders are \(snapshot)")
                 if let value = snapshot.value as? NSDictionary {
                     self.ordersDict = value
                     self.addMyOrdersButton()
@@ -69,7 +71,7 @@ class SecondViewController: UIViewController, UITableViewDelegate {
             })
         } else {
             Firebase(url:"https://cieldessertbar.firebaseio.com/Orders").queryOrderedByChild("id").queryEqualToValue(UIDevice.currentDevice().identifierForVendor!.UUIDString).observeEventType(.Value, withBlock: { snapshot -> Void in
-                print("Current User orders are \(snapshot)")
+                print("User orders are \(snapshot)")
                 if let value = snapshot.value as? NSDictionary {
                     self.ordersDict = value
                     self.addMyOrdersButton()
@@ -136,6 +138,7 @@ class SecondViewController: UIViewController, UITableViewDelegate {
         self.isOrdering = false
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "New Order", style: UIBarButtonItemStyle.Plain, target: self, action: "startOrdering")
         self.selectedItems = []
+        self.totalPrice = 0
         self.addMyOrdersButton()
         self.menuTable.reloadData()
     }
@@ -144,7 +147,7 @@ class SecondViewController: UIViewController, UITableViewDelegate {
         if self.selectedItems.count == 0 {
             UIAlertView.showAlertView("Error", text: "No items selected", vc: self)
         } else {
-            let order = UIAlertController(title: "New Ciel Order - Pick up", message: "Placing order for \(self.orderSummary()) items", preferredStyle: UIAlertControllerStyle.Alert)
+            let order = UIAlertController(title: "New Ciel Order - Pick up", message: "Placing order for \(self.orderSummary())\nTotal price = Rs.\(totalPrice)", preferredStyle: UIAlertControllerStyle.Alert)
             order.view.tintColor = UIColor.darkPinkCielColor
             
             order.addTextFieldWithConfigurationHandler({textField in
@@ -330,8 +333,12 @@ extension SecondViewController {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if isOrdering {
             let key = self.menu[indexPath.section]["name"] as! String
+            
             if let item = self.itemsDict[key] {
                 let keys = item.allKeys as! [String]
+                let object = item[keys[indexPath.row]] as! NSDictionary
+                let price = object["price"] as! Int
+                totalPrice += price
                 self.selectedItems.append("\(keys[indexPath.row])(\(key))")
                 self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Order(\(self.selectedItems.count))", style: UIBarButtonItemStyle.Plain, target: self, action: "goAheadOrder")
             }
@@ -344,6 +351,9 @@ extension SecondViewController {
         let key = self.menu[indexPath.section]["name"] as! String
         if let item = self.itemsDict[key] {
             let keys = item.allKeys as! [String]
+            let object = item[keys[indexPath.row]] as! NSDictionary
+            let price = object["price"] as! Int
+            totalPrice -= price
             self.selectedItems.removeObject(&self.selectedItems, object: "\(keys[indexPath.row])(\(key))")
             self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Order(\(self.selectedItems.count))", style: UIBarButtonItemStyle.Plain, target: self, action: "goAheadOrder")
         }

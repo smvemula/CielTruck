@@ -492,7 +492,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.CielTruck.DessertBar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "350504c2-7695-4d4a-926a-0569863e79c2";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -511,7 +511,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.CielTruck.DessertBar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "350504c2-7695-4d4a-926a-0569863e79c2";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
