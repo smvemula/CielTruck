@@ -15,14 +15,16 @@ class SecondViewController: UIViewController, UITableViewDelegate {
     var itemsDict : [String: NSDictionary] = Dictionary()
     @IBOutlet var menuTable : UITableView!
     var ref : Firebase!
+    
+    var isAdmin = false
 
     func orderSummary() -> String {
         var temp = ""
-        for each in self.selectedItems {
+        for (index,each) in EnumerateSequence(self.selectedItems) {
             if temp.utf16.count > 0 {
-                temp = "\(temp), \(each)"
+                temp = "\(temp) \n\(index+1). \(each)"
             } else {
-                temp = each
+                temp = "\n\(index+1). \(each)"
             }
         }
         return temp
@@ -30,6 +32,22 @@ class SecondViewController: UIViewController, UITableViewDelegate {
     var isOrdering = false
     
     var selectedItems = [String]()
+    
+    override func viewWillAppear(animated: Bool) {
+        
+    }
+    
+    func showOrders() {
+        self.performSegueWithIdentifier("showMyOrders", sender: nil)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let vc = segue.destinationViewController as? OrdersVC {
+            //vc.myOrders = self.ordersDict.allValues as! [NSDictionary]
+        }
+    }
+    
+    var ordersDict = NSDictionary()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +59,50 @@ class SecondViewController: UIViewController, UITableViewDelegate {
         self.view.backgroundColor = UIColor.cielBackgroundColor
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "startOrdering", name: "order", object: nil)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "New Order", style: UIBarButtonItemStyle.Plain, target: self, action: "startOrdering")
+        if isAdmin {
+            Firebase(url:"https://cieldessertbar.firebaseio.com/Orders").observeEventType(.Value, withBlock: { snapshot -> Void in
+                print("Current User orders are \(snapshot)")
+                if let value = snapshot.value as? NSDictionary {
+                    self.ordersDict = value
+                    self.addMyOrdersButton()
+                }
+            })
+        } else {
+            Firebase(url:"https://cieldessertbar.firebaseio.com/Orders").queryOrderedByChild("id").queryEqualToValue(UIDevice.currentDevice().identifierForVendor!.UUIDString).observeEventType(.Value, withBlock: { snapshot -> Void in
+                print("Current User orders are \(snapshot)")
+                if let value = snapshot.value as? NSDictionary {
+                    self.ordersDict = value
+                    self.addMyOrdersButton()
+                }
+            })
+        }
+    }
+    
+    func addMyOrdersButton() {
+        var count = 0
+        for each in self.ordersDict.allValues {
+            if let statusString = each["status"] as? String {
+                if statusString != "DONE" {
+                    count++
+                }
+            }
+        }
+        let view = UIView(frame: CGRect(x: 0, y: 10, width: 100, height: 40))
+        let label1 = UILabel(frame: CGRect(x: -5, y: 0, width: 20, height: 20))
+        label1.text = "\(count)"
+        label1.backgroundColor = UIColor.brownCielColor
+        label1.textAlignment = NSTextAlignment.Center
+        label1.layer.cornerRadius = 10
+        label1.layer.masksToBounds = true
+        label1.textColor = UIColor.whiteColor()
+        if count > 0 {
+            view.addSubview(label1)
+        }
+        let label = UIButton(frame: CGRect(x: 0, y: 0, width: 100, height: 40))
+        label.setTitle("My Orders", forState: UIControlState.Normal)
+        label.addTarget(self, action: "showOrders", forControlEvents: UIControlEvents.TouchUpInside)
+        view.addSubview(label)
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: view)
     }
     
     func startOrdering() {
@@ -74,7 +136,7 @@ class SecondViewController: UIViewController, UITableViewDelegate {
         self.isOrdering = false
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "New Order", style: UIBarButtonItemStyle.Plain, target: self, action: "startOrdering")
         self.selectedItems = []
-        self.navigationItem.leftBarButtonItem = nil
+        self.addMyOrdersButton()
         self.menuTable.reloadData()
     }
     
@@ -82,16 +144,23 @@ class SecondViewController: UIViewController, UITableViewDelegate {
         if self.selectedItems.count == 0 {
             UIAlertView.showAlertView("Error", text: "No items selected", vc: self)
         } else {
-            let order = UIAlertController(title: "New Ciel Order", message: "Placing order for \(self.orderSummary()) items", preferredStyle: UIAlertControllerStyle.Alert)
+            let order = UIAlertController(title: "New Ciel Order - Pick up", message: "Placing order for \(self.orderSummary()) items", preferredStyle: UIAlertControllerStyle.Alert)
             order.view.tintColor = UIColor.darkPinkCielColor
             
             order.addTextFieldWithConfigurationHandler({textField in
                 textField.placeholder = "Enter Your name"
                 textField.autocapitalizationType = UITextAutocapitalizationType.Sentences
+                textField.returnKeyType = UIReturnKeyType.Next
+                if let exists = NSUserDefaults.standardUserDefaults().objectForKey("User") as? String {
+                    textField.text = exists
+                }
             })
             order.addTextFieldWithConfigurationHandler({textField in
                 textField.placeholder = "Enter Your Phone number"
                 textField.keyboardType = UIKeyboardType.PhonePad
+                if let exists = NSUserDefaults.standardUserDefaults().objectForKey("Phone") as? String {
+                    textField.text = exists
+                }
             })
             let doOrder = UIAlertAction(title: "Order", style: UIAlertActionStyle.Default, handler: { action in
                 var isError = true
@@ -121,8 +190,10 @@ class SecondViewController: UIViewController, UITableViewDelegate {
                     })
                 } else {
                     //Complete Order
-                    Firebase(url:"https://cieldessertbar.firebaseio.com/Orders").childByAutoId().setValue(["timestamp": FirebaseServerValue.timestamp(), "name": order.textFields![0].text!, "phone": order.textFields![1].text!, "order": self.orderSummary()])
-                    UIAlertView.showAlertView("Success", text: "Placed order for \(self.orderSummary()) items", vc: self)
+                    NSUserDefaults.standardUserDefaults().setObject(order.textFields![0].text!, forKey: "User")
+                    NSUserDefaults.standardUserDefaults().setObject(order.textFields![1].text!, forKey: "Phone")
+                    Firebase(url:"https://cieldessertbar.firebaseio.com/Orders").childByAutoId().setValue(["timestamp": FirebaseServerValue.timestamp(), "name": order.textFields![0].text!, "phone": order.textFields![1].text!, "order": self.orderSummary().stringByReplacingOccurrencesOfString("\n", withString: ""), "id": UIDevice.currentDevice().identifierForVendor!.UUIDString, "status": "NEW"])
+                    UIAlertView.showAlertView("Success", text: "Placed order for \(self.orderSummary()) items. Thank you \(order.textFields![0].text!)", vc: self)
                     self.resetValues()
                 }
             })

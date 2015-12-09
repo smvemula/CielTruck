@@ -118,11 +118,51 @@
                     <navigationItem key="navigationItem" title="Menu" id="xbK-GM-zue"/>
                     <connections>
                         <outlet property="menuTable" destination="adQ-0f-7LM" id="h4q-lB-mTn"/>
+                        <segue destination="48I-e1-7dz" kind="show" identifier="showMyOrders" id="miG-au-Wfx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2374" y="360"/>
+            <point key="canvasLocation" x="2278" y="354"/>
+        </scene>
+        <!--OrdersVC-->
+        <scene sceneID="V84-9P-0zZ">
+            <objects>
+                <viewController id="48I-e1-7dz" customClass="OrdersVC" customModule="CielTruck" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Rin-wA-Ktc"/>
+                        <viewControllerLayoutGuide type="bottom" id="1LI-YF-65S"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="6IU-RT-kxQ">
+                        <rect key="frame" x="0.0" y="64" width="600" height="487"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6oK-T8-8Lc">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="48I-e1-7dz" id="cN7-o3-3t2"/>
+                                    <outlet property="delegate" destination="48I-e1-7dz" id="nYY-y5-eEb"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="6oK-T8-8Lc" firstAttribute="top" secondItem="Rin-wA-Ktc" secondAttribute="bottom" id="57q-FF-7cM"/>
+                            <constraint firstItem="1LI-YF-65S" firstAttribute="top" secondItem="6oK-T8-8Lc" secondAttribute="bottom" id="IPZ-2F-8AV"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="6oK-T8-8Lc" secondAttribute="trailing" constant="-20" id="Z1X-xF-Ghc"/>
+                            <constraint firstItem="6oK-T8-8Lc" firstAttribute="leading" secondItem="6IU-RT-kxQ" secondAttribute="leadingMargin" constant="-20" id="ZUv-6Q-Dct"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="ordersTable" destination="6oK-T8-8Lc" id="8Au-X1-i52"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ae4-qg-oGT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2086" y="1068"/>
         </scene>
         <!--Connect with Ciel-->
         <scene sceneID="RWj-7o-gg5">

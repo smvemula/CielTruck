@@ -188,8 +188,8 @@ extension NSDate {
     }
     
     public class func getDefaultTimeUsingGMTDoubleValue(GMTTime : Double, dateFormat:String) -> String {
-        let timestamp : Double = GMTTime
-        //timestamp = timestamp/1000
+        var timestamp : Double = GMTTime
+        timestamp = timestamp/1000
         let date : NSDate = NSDate(timeIntervalSince1970: timestamp)
         
         return self.getDefaultTimeUsingDate(date, dateFormat: dateFormat)

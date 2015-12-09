@@ -20,13 +20,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CielTruck/HomeMapViewController.swift"
-            timestampString = "471308909.331123"
+            timestampString = "471328049.70514"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "443"
-            endingLineNumber = "443"
-            landmarkName = "mapView(_:rendererForOverlay:)"
-            landmarkType = "5">
+            startingLineNumber = "447"
+            endingLineNumber = "447"
+            landmarkName = "HomeMapViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
