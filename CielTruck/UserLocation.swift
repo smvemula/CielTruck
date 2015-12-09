@@ -33,7 +33,7 @@ class UserLocation: NSObject, CLLocationManagerDelegate {
             self.locationManager.requestWhenInUseAuthorization()
         }
         self.locationManager.delegate = self
-        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
         self.locationManager.distanceFilter = 1
         //self.locationManager.startUpdatingLocation()
     }
