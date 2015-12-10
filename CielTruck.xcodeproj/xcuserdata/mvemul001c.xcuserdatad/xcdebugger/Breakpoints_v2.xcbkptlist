@@ -20,45 +20,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CielTruck/HomeMapViewController.swift"
-            timestampString = "471328049.70514"
+            timestampString = "471401302.832871"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "447"
-            endingLineNumber = "447"
-            landmarkName = "HomeMapViewController"
-            landmarkType = "3">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CielTruck.Artwork.__deallocating_deinit"
-                  moduleName = "CielTruck"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mvemul001c/Desktop/CielTruck/CielTruck/HomeMapViewController.swift"
-                  timestampString = "471397321.993816"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "0"
-                  endingLineNumber = "0"
-                  offsetFromSymbolStart = "16">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CielTruck.Artwork.init (CielTruck.Artwork.Type)() -&gt; CielTruck.Artwork"
-                  moduleName = "CielTruck"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mvemul001c/Desktop/CielTruck/CielTruck/HomeMapViewController.swift"
-                  timestampString = "471397321.994207"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "450"
-                  endingLineNumber = "450"
-                  offsetFromSymbolStart = "20">
-               </Location>
-            </Locations>
+            startingLineNumber = "448"
+            endingLineNumber = "448"
+            landmarkName = "mapView(_:rendererForOverlay:)"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

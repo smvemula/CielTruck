@@ -361,7 +361,9 @@ extension HomeMapViewController {
             } else {
                 each.image = UIImage(named: "Truck")?.tintWithColor(UIColor.darkPinkCielColor)
                 each.canShowCallout = true
-                each.rightCalloutAccessoryView = UIButton(type: UIButtonType.DetailDisclosure)
+                if !isAdmin {
+                    each.rightCalloutAccessoryView = UIButton(type: UIButtonType.DetailDisclosure)
+                }
                 self.truckLocatorMapView.selectAnnotation(each.annotation!, animated: true)
             }
         }
@@ -384,9 +386,8 @@ extension HomeMapViewController {
                 tab.selectedIndex = 1
             }
         })
-        if !isAdmin {
-            truckFeatures.addAction(order)
-        }
+        
+        truckFeatures.addAction(order)
         
         let directions = UIAlertAction(title: "Get Directions", style: UIAlertActionStyle.Default, handler: { action in
             let directVia = UIAlertController(title: "Show Directions with", message: "", preferredStyle: UIAlertControllerStyle.Alert)
