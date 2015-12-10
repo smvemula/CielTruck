@@ -384,7 +384,9 @@ extension HomeMapViewController {
                 tab.selectedIndex = 1
             }
         })
-        truckFeatures.addAction(order)
+        if !isAdmin {
+            truckFeatures.addAction(order)
+        }
         
         let directions = UIAlertAction(title: "Get Directions", style: UIAlertActionStyle.Default, handler: { action in
             let directVia = UIAlertController(title: "Show Directions with", message: "", preferredStyle: UIAlertControllerStyle.Alert)
