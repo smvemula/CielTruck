@@ -195,7 +195,7 @@ class SecondViewController: UIViewController, UITableViewDelegate {
                     //Complete Order
                     NSUserDefaults.standardUserDefaults().setObject(order.textFields![0].text!, forKey: "User")
                     NSUserDefaults.standardUserDefaults().setObject(order.textFields![1].text!, forKey: "Phone")
-                    Firebase(url:"https://cieldessertbar.firebaseio.com/Orders").childByAutoId().setValue(["timestamp": FirebaseServerValue.timestamp(), "name": order.textFields![0].text!, "phone": order.textFields![1].text!, "order": self.orderSummary().stringByReplacingOccurrencesOfString("\n", withString: ""), "id": UIDevice.currentDevice().identifierForVendor!.UUIDString, "status": "NEW"])
+                    Firebase(url:"https://cieldessertbar.firebaseio.com/Orders").childByAutoId().setValue(["timestamp": FirebaseServerValue.timestamp(), "name": order.textFields![0].text!, "phone": order.textFields![1].text!, "order": self.orderSummary().stringByReplacingOccurrencesOfString("\n", withString: ""), "id": UIDevice.currentDevice().identifierForVendor!.UUIDString, "status": "NEW", "total": self.totalPrice])
                     UIAlertView.showAlertView("Success", text: "Placed order for \(self.orderSummary()) items. Thank you \(order.textFields![0].text!)", vc: self)
                     self.resetValues()
                 }
