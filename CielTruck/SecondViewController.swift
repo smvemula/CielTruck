@@ -63,7 +63,7 @@ class SecondViewController: UIViewController, UITableViewDelegate {
         }
         if isAdmin {
             Firebase(url:"https://cieldessertbar.firebaseio.com/Orders").observeEventType(.Value, withBlock: { snapshot -> Void in
-                print("Admin orders are \(snapshot)")
+                //print("Admin orders are \(snapshot)")
                 if let value = snapshot.value as? NSDictionary {
                     self.ordersDict = value
                 }
@@ -71,7 +71,7 @@ class SecondViewController: UIViewController, UITableViewDelegate {
             })
         } else {
             Firebase(url:"https://cieldessertbar.firebaseio.com/Orders").queryOrderedByChild("id").queryEqualToValue(UIDevice.currentDevice().identifierForVendor!.UUIDString).observeEventType(.Value, withBlock: { snapshot -> Void in
-                print("User orders are \(snapshot)")
+                //print("User orders are \(snapshot)")
                 if let value = snapshot.value as? NSDictionary {
                     self.ordersDict = value
                 }

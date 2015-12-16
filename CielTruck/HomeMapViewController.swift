@@ -197,7 +197,7 @@ class HomeMapViewController: UIViewController, UITextFieldDelegate, CLLocationMa
         
         // Attach a closure to read the data at our posts reference
         ref.observeEventType(.Value, withBlock: { snapshot in
-            print("Inial Value \(snapshot.value)")
+            //print("Inial Value \(snapshot.value)")
             dispatch_async(dispatch_get_main_queue(), {
                 self.view.stopLoading()
             })
