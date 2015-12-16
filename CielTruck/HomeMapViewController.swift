@@ -30,15 +30,25 @@ class HomeMapViewController: UIViewController, UITextFieldDelegate, CLLocationMa
                 UserLocation.manager.locationManager.startUpdatingLocation()
             default:
                 self.addressTextfield.hidden = false
+                if let exists = NSUserDefaults.standardUserDefaults().objectForKey("UsercustomAddress") as? String {
+                    self.addressTextfield.text = exists
+                }
                 self.addressTextfield.becomeFirstResponder()
                 print("")
             }
         } else {
             switch sender.selectedSegmentIndex {
             case 0:
-                NSNotificationCenter.defaultCenter().addObserver(self, selector: "receiveLocationUpdateNotification:", name: kLocationUpdateNotification, object: nil)
-                UserLocation.manager.locationManager.startUpdatingLocation()
+                self.addressTextfield.resignFirstResponder()
+                if CLLocationManager.authorizationStatus() == CLAuthorizationStatus.Denied {
+                    UIAlertView.showAlertView("Location not authorized", text: "Ciel needs you to give access to location for providing directions to the truck. Settings -> Ciel -> Turn on Location For 'Ciel' ", vc: self)
+                    self.locationOptions.selectedSegmentIndex = UISegmentedControlNoSegment
+                    self.cancel()
+                } else {
+                    self.getUserLocation()
+                }
             default:
+                UserLocation.manager.locationManager.stopUpdatingLocation()
                 self.addressTextfield.hidden = false
                 self.addressTextfield.becomeFirstResponder()
                 print("")
@@ -85,11 +95,16 @@ class HomeMapViewController: UIViewController, UITextFieldDelegate, CLLocationMa
                 switch self.locationOptions.selectedSegmentIndex {
                 case 0:
                     print("Show user with Trucks around for current location")
+                    self.getUserLocation()
                     NSUserDefaults.standardUserDefaults().setValue(nil, forKey: "UsercustomAddress")
                     self.cancel()
-                default:
+                case 1:
                     self.convertAddressToLatLon(self.addressTextfield.text!, save: false)
                     print("Show user with Trucks around for Custom location")
+                default:
+                    self.cancel()
+                    print("Do nothing")
+                    
                 }
             } else {
                 self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: "editsave")
@@ -102,6 +117,7 @@ class HomeMapViewController: UIViewController, UITextFieldDelegate, CLLocationMa
 
     var mapAnnotation: MapAnnotation?
     var userAnnotation: MapAnnotation?
+    var gotUser: CLLocation?
     
     //constants
     let kStoreProfileIDKey = "storeProfileID"
@@ -115,12 +131,14 @@ class HomeMapViewController: UIViewController, UITextFieldDelegate, CLLocationMa
         Firebase.defaultConfig().persistenceEnabled = true
         ref = Firebase(url:"https://cieldessertbar.firebaseio.com/Locations/Truck1")
         
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "getUserLocation", name: UIApplicationWillEnterForegroundNotification, object: nil)
+        
         self.navigationController?.navigationBar.barTintColor = UIColor.darkPinkCielColor
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "map"), style: UIBarButtonItemStyle.Plain, target: self, action: "editsave")
         self.locationOptions.tintColor = UIColor.darkPinkCielColor
         self.view.backgroundColor = UIColor.cielBackgroundColor
+        self.view.startLoadingWithText("Finding Ciel Trucks arounds you ....")
         self.getTruckLocations()
-        
         if isAdmin {
             self.locationOptions.setTitle("Current", forSegmentAtIndex: 0)
             self.locationOptions.setTitle("Keep Updating", forSegmentAtIndex: 1)
@@ -132,13 +150,30 @@ class HomeMapViewController: UIViewController, UITextFieldDelegate, CLLocationMa
             if let exists = NSUserDefaults.standardUserDefaults().objectForKey("UsercustomAddress") as? String {
                 self.convertAddressToLatLon(exists, save: false)
                 self.locationOptions.selectedSegmentIndex = 1
+            } else if  CLLocationManager.authorizationStatus() == CLAuthorizationStatus.AuthorizedWhenInUse {
+                self.getUserLocation()
             } else {
+                UserLocation.manager
+                NSNotificationCenter.defaultCenter().addObserver(self, selector: "receiveLocationUpdateNotification:", name: kLocationUpdateNotification, object: nil)
+                //UserLocation.manager.locationManager.delegate = self
+            }
+        }
+    }
+    
+    func getUserLocation() {
+        if  CLLocationManager.authorizationStatus() != CLAuthorizationStatus.Denied && CLLocationManager.authorizationStatus() != CLAuthorizationStatus.NotDetermined {
+            if self.locationOptions.selectedSegmentIndex != 1 {
                 NSNotificationCenter.defaultCenter().addObserver(self, selector: "receiveLocationUpdateNotification:", name: kLocationUpdateNotification, object: nil)
                 UserLocation.manager.locationManager.startUpdatingLocation()
                 self.locationOptions.selectedSegmentIndex = 0
             }
         }
     }
+    /*
+    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+        self.getUserLocation()
+        print(status)
+    }*/
     
     func updateLocationOnMap(snapshot: FDataSnapshot) {
         if let truck1 = snapshot.value as? NSDictionary {
@@ -162,10 +197,15 @@ class HomeMapViewController: UIViewController, UITextFieldDelegate, CLLocationMa
         
         // Attach a closure to read the data at our posts reference
         ref.observeEventType(.Value, withBlock: { snapshot in
-            //print("Inial Value \(snapshot.value)")
+            print("Inial Value \(snapshot.value)")
+            dispatch_async(dispatch_get_main_queue(), {
+                self.view.stopLoading()
+            })
             self.updateLocationOnMap(snapshot)
-            
             }, withCancelBlock: { error in
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.view.stopLoading()
+                })
                 print(error.description)
         })
     }
@@ -203,6 +243,7 @@ extension HomeMapViewController {
                     self.setLatLonInMap(location!)
                     //self.cancel()
                 } else {
+                    self.addressTextfield.text = aAddress
                     self.cancel()
                     self.addUserAnnotationWithCoordinates(location!)
                     NSUserDefaults.standardUserDefaults().setValue(aAddress, forKey: "UsercustomAddress")
@@ -228,7 +269,9 @@ extension HomeMapViewController {
                 print(error)
             } else {
                 let placemark = placemarks?.last
-                self.addressTextfield.text = ABCreateStringWithAddressDictionary(placemark!.addressDictionary!, false)
+                if self.isAdmin {
+                    self.addressTextfield.text = ABCreateStringWithAddressDictionary(placemark!.addressDictionary!, false)
+                }
             }
             })
     }
@@ -240,7 +283,7 @@ extension HomeMapViewController {
     
     func addUserAnnotationWithCoordinates(aLocation: CLLocation)
     {
-        let geocoder = CLGeocoder()
+        /*let geocoder = CLGeocoder()
         geocoder.reverseGeocodeLocation(aLocation, completionHandler: {(placemarks, error) -> Void in
             print("finding address for location")
             if error != nil {
@@ -249,7 +292,7 @@ extension HomeMapViewController {
                 let placemark = placemarks?.last
                 self.addressTextfield.text = ABCreateStringWithAddressDictionary(placemark!.addressDictionary!, false)
             }
-        })
+        })*/
         
         if let exists = self.userAnnotation {
             self.truckLocatorMapView.removeAnnotation(exists)
@@ -259,13 +302,9 @@ extension HomeMapViewController {
         self.userAnnotation = aMapAnnotation
         
         if let exists = self.mapAnnotation {
-//            let span = MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02)
-//            let viewRegion = MKCoordinateRegion (center: exists.coordinate, span: span)
-//            self.truckLocatorMapView.setRegion(viewRegion, animated: true)
-//            
             self.truckLocatorMapView.showAnnotations([aMapAnnotation, exists], animated: true)
         } else {
-            
+            self.truckLocatorMapView.showAnnotations([aMapAnnotation], animated: true)
         }
     }
     
@@ -286,12 +325,18 @@ extension HomeMapViewController {
         let aMapAnnotation = MapAnnotation(coordinate: aCordinates, title: title, subtitle: subTitle)
         self.mapAnnotation = aMapAnnotation
         
-        let span = MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02)
-        
-        let viewRegion = MKCoordinateRegion(center: aCordinates, span: span)
-        
-        self.truckLocatorMapView.setRegion(viewRegion, animated: true)
-        self.truckLocatorMapView.addAnnotation(aMapAnnotation)
+        if let exists = self.userAnnotation {
+            self.truckLocatorMapView.showAnnotations([aMapAnnotation, exists], animated: true)
+            //self.addUserAnnotationWithCoordinates(exists)
+        } else {
+            if !isAdmin {
+                self.getUserLocation()
+            }
+            let span = MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02)
+            let viewRegion = MKCoordinateRegion(center: aCordinates, span: span)
+            self.truckLocatorMapView.setRegion(viewRegion, animated: true)
+            self.truckLocatorMapView.addAnnotation(aMapAnnotation)
+        }
     }
     
     func saveStoreDetailsInServerWithLocation(alocation: CLLocation, address: String)
@@ -322,6 +367,8 @@ extension HomeMapViewController {
                 if isAdmin {
                     self.convertLatLonToAddress(clLocation)
                 } else {
+                    self.gotUser = clLocation
+                    self.locationOptions.selectedSegmentIndex = 0
                     self.addUserAnnotationWithCoordinates(clLocation)
                 }
             }
@@ -390,24 +437,35 @@ extension HomeMapViewController {
             let directVia = UIAlertController(title: "Show Directions with", message: "", preferredStyle: UIAlertControllerStyle.Alert)
             directVia.view.tintColor = UIColor.darkPinkCielColor
             // truckFeatures.view.
-            let google = UIAlertAction(title: "Google Maps", style: UIAlertActionStyle.Default, handler: { action in
-                UIApplication.sharedApplication().openURL(NSURL(string: "comgooglemaps://?saddr=\(self.userAnnotation!.coordinate.latitude),\(self.userAnnotation!.coordinate.longitude)&daddr=\(self.mapAnnotation!.coordinate.latitude),\(self.mapAnnotation!.coordinate.longitude)&directionsmode=driving")!)
-            })
-            if UIApplication.sharedApplication().canOpenURL(NSURL(string: "comgooglemaps://")!) {
-                directVia.addAction(google)
+            var findDirections = true
+            if CLLocationManager.authorizationStatus() == CLAuthorizationStatus.Denied {
+                findDirections = false
+                if let _ = self.userAnnotation {
+                    findDirections = true
+                } else {
+                    UIAlertView.showAlertView("Location not authorized", text: "Ciel needs you to give access to location for providing directions to the truck. Settings -> Ciel -> Turn on Location For 'Ciel' ", vc: self)
+                }
             }
-            let apple = UIAlertAction(title: "Apple Maps", style: UIAlertActionStyle.Default, handler: { action in
-                UIApplication.sharedApplication().openURL(NSURL(string: "http://maps.apple.com/?saddr=\(self.userAnnotation!.coordinate.latitude),\(self.userAnnotation!.coordinate.longitude)&daddr=\(self.mapAnnotation!.coordinate.latitude),\(self.mapAnnotation!.coordinate.longitude)&dirflg=d")!)
-            })
-            if UIApplication.sharedApplication().canOpenURL(NSURL(string: "http://maps.apple.com/")!) {
-                directVia.addAction(apple)
+            if findDirections {
+                let google = UIAlertAction(title: "Google Maps", style: UIAlertActionStyle.Default, handler: { action in
+                    UIApplication.sharedApplication().openURL(NSURL(string: "comgooglemaps://?saddr=\(self.userAnnotation!.coordinate.latitude),\(self.userAnnotation!.coordinate.longitude)&daddr=\(self.mapAnnotation!.coordinate.latitude),\(self.mapAnnotation!.coordinate.longitude)&directionsmode=driving")!)
+                })
+                if UIApplication.sharedApplication().canOpenURL(NSURL(string: "comgooglemaps://")!) {
+                    directVia.addAction(google)
+                }
+                let apple = UIAlertAction(title: "Apple Maps", style: UIAlertActionStyle.Default, handler: { action in
+                    UIApplication.sharedApplication().openURL(NSURL(string: "http://maps.apple.com/?saddr=\(self.userAnnotation!.coordinate.latitude),\(self.userAnnotation!.coordinate.longitude)&daddr=\(self.mapAnnotation!.coordinate.latitude),\(self.mapAnnotation!.coordinate.longitude)&dirflg=d")!)
+                })
+                if UIApplication.sharedApplication().canOpenURL(NSURL(string: "http://maps.apple.com/")!) {
+                    directVia.addAction(apple)
+                }
+                let nothing = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: { action in
+                })
+                directVia.addAction(nothing)
+                self.presentViewController(directVia, animated: true, completion: {
+                    directVia.view.tintColor = UIColor.darkPinkCielColor
+                })
             }
-            let nothing = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: { action in
-            })
-            directVia.addAction(nothing)
-            self.presentViewController(directVia, animated: true, completion: {
-                directVia.view.tintColor = UIColor.darkPinkCielColor
-            })
         })
         truckFeatures.addAction(directions)
         

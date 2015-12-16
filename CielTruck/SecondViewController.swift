@@ -42,7 +42,7 @@ class SecondViewController: UIViewController, UITableViewDelegate {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let vc = segue.destinationViewController as? OrdersVC {
+        if let _ = segue.destinationViewController as? OrdersVC {
             //vc.myOrders = self.ordersDict.allValues as! [NSDictionary]
         }
     }
@@ -66,16 +66,16 @@ class SecondViewController: UIViewController, UITableViewDelegate {
                 print("Admin orders are \(snapshot)")
                 if let value = snapshot.value as? NSDictionary {
                     self.ordersDict = value
-                    self.addMyOrdersButton()
                 }
+                self.addMyOrdersButton()
             })
         } else {
             Firebase(url:"https://cieldessertbar.firebaseio.com/Orders").queryOrderedByChild("id").queryEqualToValue(UIDevice.currentDevice().identifierForVendor!.UUIDString).observeEventType(.Value, withBlock: { snapshot -> Void in
                 print("User orders are \(snapshot)")
                 if let value = snapshot.value as? NSDictionary {
                     self.ordersDict = value
-                    self.addMyOrdersButton()
                 }
+                self.addMyOrdersButton()
             })
         }
     }
@@ -89,7 +89,7 @@ class SecondViewController: UIViewController, UITableViewDelegate {
                 }
             }
         }
-        let view = UIView(frame: CGRect(x: 0, y: 10, width: 100, height: 40))
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 40))
         let label1 = UILabel(frame: CGRect(x: -5, y: 0, width: 20, height: 20))
         label1.text = "\(count)"
         label1.backgroundColor = UIColor.brownCielColor
@@ -102,6 +102,7 @@ class SecondViewController: UIViewController, UITableViewDelegate {
         }
         let label = UIButton(frame: CGRect(x: 0, y: 0, width: 100, height: 40))
         label.setTitle("My Orders", forState: UIControlState.Normal)
+        label.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Left
         label.addTarget(self, action: "showOrders", forControlEvents: UIControlEvents.TouchUpInside)
         view.addSubview(label)
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: view)
@@ -110,6 +111,7 @@ class SecondViewController: UIViewController, UITableViewDelegate {
     func startOrdering() {
         self.isOrdering = true
         self.selectedItems = []
+        self.menuTable.allowsMultipleSelection = true
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.Plain, target: self, action: "cancelOrder")
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Order(0)", style: UIBarButtonItemStyle.Plain, target: self, action: "goAheadOrder")
         self.menuTable.reloadData()
@@ -140,6 +142,7 @@ class SecondViewController: UIViewController, UITableViewDelegate {
         self.selectedItems = []
         self.totalPrice = 0
         self.addMyOrdersButton()
+        self.menuTable.allowsSelection = false
         self.menuTable.reloadData()
     }
     

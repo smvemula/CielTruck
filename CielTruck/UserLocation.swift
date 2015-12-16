@@ -27,6 +27,25 @@ class UserLocation: NSObject, CLLocationManagerDelegate {
         return SharedUserLocation
     }
     
+    class func checkInternet(flag:Bool, completionHandler:(internet:Bool) -> Void)
+    {
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+        
+        let url = NSURL(string: "http://www.google.com/")
+        let request = NSMutableURLRequest(URL: url!)
+        
+        request.HTTPMethod = "HEAD"
+        request.cachePolicy = NSURLRequestCachePolicy.ReloadIgnoringLocalAndRemoteCacheData
+        request.timeoutInterval = 10.0
+        
+        NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()) { (response, data, error) -> Void in
+            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+            let rsp = response as! NSHTTPURLResponse?
+            completionHandler(internet:rsp?.statusCode == 200)
+        }
+    }
+
+    
     override init () {
         super.init()
         if self.locationManager.respondsToSelector(Selector("requestAlwaysAuthorization")) {
@@ -78,7 +97,7 @@ class UserLocation: NSObject, CLLocationManagerDelegate {
             if (shouldIAllow == true) {
                 NSLog("Location to Allowed")
                 // Start location services
-                //locationManager.startUpdatingLocation()
+                locationManager.startUpdatingLocation()
             } else {
                 NSLog("Denied access: \(status)")
             }

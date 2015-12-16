@@ -83,7 +83,11 @@ extension OrdersVC {
             cell.textLabel?.text = order
         }
         if let date = self.myOrders[indexPath.row]["timestamp"] as? Double {
-            cell.detailTextLabel?.text = NSDate.getDefaultTimeUsingGMTDoubleValue(date, dateFormat: "MM/d/yyyy h.mm aa")
+            var temp = NSDate.getDefaultTimeUsingGMTDoubleValue(date, dateFormat: "MM/d/yyyy h.mm aa")
+            if let price = self.myOrders[indexPath.row]["total"] as? Int {
+                temp = "\(temp), Total Price Rs.\(price)"
+            }
+            cell.detailTextLabel?.text = temp
         }
         
         if let statusString = self.myOrders[indexPath.row]["status"] as? String {

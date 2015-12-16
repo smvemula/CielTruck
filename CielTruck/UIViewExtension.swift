@@ -57,15 +57,18 @@ extension UIView {
             
             let indicator = UIActivityIndicatorView(activityIndicatorStyle: indicatorStyle)
             indicator.startAnimating()
-            indicator.color = UIColor.darkPinkCielColor
+            indicator.color = UIColor.brownCielColor
             indicator.center = loadingView.center
             
             
             if message.utf16.count > 0 {
-                let label = UILabel(frame: CGRectMake(15, indicator.frame.origin.y - 60, loadingView.frame.size.width - 30, 50))
+                loadingView.frame = CGRectMake(0, 0, self.bounds.size.width, 50)
+                let label = UILabel(frame: CGRectMake(15, 5, loadingView.frame.size.width - 80, 40))
                 label.numberOfLines = 2
-                label.textAlignment = NSTextAlignment.Center
+                label.textColor = UIColor.brownCielColor
+                label.textAlignment = NSTextAlignment.Left
                 label.text = message
+                indicator.frame = CGRectMake(loadingView.frame.size.width - 50, 10, 30, 30)
                 loadingView.addSubview(label)
             }
             
