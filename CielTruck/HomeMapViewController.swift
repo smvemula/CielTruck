@@ -404,7 +404,7 @@ extension HomeMapViewController {
         for each in views {
             each.tintColor = UIColor.darkPinkCielColor
             if each.annotation!.title!! == "Me" {
-                each.image = UIImage(named: "userpin")?.tintWithColor(UIColor.darkPinkCielColor)
+                each.image = UIImage(named: "userpin")?.tintWithColor(UIColor.blueColor())
             } else {
                 each.image = UIImage(named: "Truck")?.tintWithColor(UIColor.darkPinkCielColor)
                 each.canShowCallout = true
